@@ -21,14 +21,14 @@ function addTask() {
     li.appendChild(span);
   }
   inputBox.value = "";
-  inputBox.focus();
+  inputBox.focus();  // i added the focuse 
   saveData();
 }
 
 listContainer.addEventListener(
   "click",
   function (e) {
-    if (e.target.tagName === "LI") {
+    if (e.target.tagName === " LI") {
       e.target.classList.toggle("checked");
       saveData();
     } else if (e.target.tagName === "SPAN") {
