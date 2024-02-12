@@ -1,6 +1,14 @@
 const inputBox = document.getElementById("input-box");
 const listContainer = document.getElementById("list-container");
 
+// my code for submiting form by Enter Key(13)
+let enterKey = document.querySelector("#input-box");
+enterKey.addEventListener("keyup", (e) => {
+  if (e.keyCode === 13) {
+    addTask();
+  }
+});
+
 function addTask() {
   if (inputBox.value === "") {
     alert("You must write somthing!");
@@ -12,28 +20,31 @@ function addTask() {
     span.innerHTML = "\u00d7";
     li.appendChild(span);
   }
-    inputBox.value = "";
-    saveData()
+  inputBox.value = "";
+  inputBox.focus();
+  saveData();
 }
 
-listContainer.addEventListener("click",function (e) {
+listContainer.addEventListener(
+  "click",
+  function (e) {
     if (e.target.tagName === "LI") {
-        e.target.classList.toggle("checked");
-        saveData()
+      e.target.classList.toggle("checked");
+      saveData();
+    } else if (e.target.tagName === "SPAN") {
+      e.target.parentElement.remove();
+      saveData();
     }
-    else if (e.target.tagName === "SPAN") {
-        e.target.parentElement.remove();
-        saveData()
-    }
-  },false);
-
+  },
+  false
+);
 
 function saveData() {
-    localStorage.setItem("data", listContainer.innerHTML)
+  localStorage.setItem("data", listContainer.innerHTML);
 }
 
 function showTask() {
-    listContainer.innerHTML=localStorage.getItem("data")
+  listContainer.innerHTML = localStorage.getItem("data");
 }
 
-showTask()
+showTask();
