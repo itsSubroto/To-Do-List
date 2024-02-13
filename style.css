@@ -66,6 +66,8 @@
 }
 
 ul li{
+
+    border:none;
     list-style: none;
     font-size: 17px;
     padding: 12px 8px 12px 50px;
